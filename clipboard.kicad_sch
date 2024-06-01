@@ -1,0 +1,164 @@
+import zipfile
+import os
+
+# Define project name and paths
+project_name = "Eurorack_Diode_Distortion"
+base_path = f"/mnt/data/{project_name}"
+schematic_path = f"{base_path}/{project_name}.kicad_sch"
+
+# Create project directory structure
+os.makedirs(base_path, exist_ok=True)
+
+# Create a basic schematic file content
+schematic_content = """
+EESchema Schematic File Version 4
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title "Eurorack Diode Distortion"
+Company "User"
+Rev "1.0"
+Date "2023-06-01"
+EndDescr
+$Comp
+L Device:C C1
+U 1 1 5B80A370
+P 4800 3300
+F 0 "C1" V 4700 3300 50  0000 C CNN
+F 1 "10uF" V 4700 3400 50  0000 C CNN
+F 2 "Capacitors_THT:CP_Radial_D3.0mm_P2.50mm" H 4800 3300 50  0001 C CNN
+F 3 "" H 4800 3300 50  0000 C CNN
+    1    4800 3300
+    1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 5B80A371
+P 5000 3300
+F 0 "R1" V 4900 3300 50  0000 C CNN
+F 1 "10k" V 4900 3400 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" H 5000 3300 50  0001 C CNN
+F 3 "" H 5000 3300 50  0000 C CNN
+    1    5000 3300
+    1    0    0    -1  
+$EndComp
+$Comp
+L Device:OpAmp U1A
+U 1 1 5B80A372
+P 5200 3300
+F 0 "U1A" V 5100 3300 50  0000 C CNN
+F 1 "TL072" V 5100 3400 50  0000 C CNN
+F 2 "" H 5200 3300 50  0001 C CNN
+F 3 "" H 5200 3300 50  0000 C CNN
+    1    5200 3300
+    1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D1
+U 1 1 5B80A373
+P 5400 3300
+F 0 "D1" V 5300 3300 50  0000 C CNN
+F 1 "1N4148" V 5300 3400 50  0000 C CNN
+F 2 "" H 5400 3300 50  0001 C CNN
+F 3 "" H 5400 3300 50  0000 C CNN
+    1    5400 3300
+    1    0    0    -1  
+$EndComp
+$Comp
+L Device:D D2
+U 1 1 5B80A374
+P 5600 3300
+F 0 "D2" V 5500 3300 50  0000 C CNN
+F 1 "1N4148" V 5500 3400 50  0000 C CNN
+F 2 "" H 5600 3300 50  0001 C CNN
+F 3 "" H 5600 3300 50  0000 C CNN
+    1    5600 3300
+    1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 5B80A375
+P 5800 3300
+F 0 "R2" V 5700 3300 50  0000 C CNN
+F 1 "1k" V 5700 3400 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" H 5800 3300 50  0001 C CNN
+F 3 "" H 5800 3300 50  0000 C CNN
+    1    5800 3300
+    1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R3
+U 1 1 5B80A376
+P 6000 3300
+F 0 "R3" V 5900 3300 50  0000 C CNN
+F 1 "10k" V 5900 3400 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" H 6000 3300 50  0001 C CNN
+F 3 "" H 6000 3300 50  0000 C CNN
+    1    6000 3300
+    1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 5B80A377
+P 6200 3300
+F 0 "C2" V 6100 3300 50  0000 C CNN
+F 1 "10uF" V 6100 3400 50  0000 C CNN
+F 2 "Capacitors_THT:CP_Radial_D3.0mm_P2.50mm" H 6200 3300 50  0001 C CNN
+F 3 "" H 6200 3300 50  0000 C CNN
+    1    6200 3300
+    1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 5B80A378
+P 6400 3300
+F 0 "R4" V 6300 3300 50  0000 C CNN
+F 1 "10k" V 6300 3400 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" H 6400 3300 50  0001 C CNN
+F 3 "" H 6400 3300 50  0000 C CNN
+    1    6400 3300
+    1    0    0    -1  
+$EndComp
+Wire Wire Line
+    4800 3300 4900 3300
+Wire Wire Line
+    4900 3300 5000 3300
+Wire Wire Line
+    5000 3300 5100 3300
+Wire Wire Line
+    5100 3300 5200 3300
+Wire Wire Line
+    5200 3300 5300 3300
+Wire Wire Line
+    5300 3300 5400 3300
+Wire Wire Line
+    5400 3300 5500 3300
+Wire Wire Line
+    5500 3300 5600 3300
+Wire Wire Line
+    5600 3300 5700 3300
+Wire Wire Line
+    5700 3300 5800 3300
+Wire Wire Line
+    5800 3300 5900 3300
+Wire Wire Line
+    5900 3300 6000 3300
+Wire Wire Line
+    6000 3300 6100 3300
+Wire Wire Line
+    6100 3300 6200 3300
+Wire Wire Line
+    6200 3300 6300 3300
+Wire Wire Line
+    6300 3300 6400 3300
+$EndSCHEMATC
+"""
+
+# Save the schematic file
+with open(schematic_path, "w") as file:
+    file.write(schematic_content)
+
+# Create a zip file of the project
+zip_file_path =
